@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Saqlain Islam · Software Engineer</title>
+<meta name="description" content="Saqlain Islam: full-stack software engineer focused on backend systems, applied security and AI agents. Projects: Autodidact, Sakshi, AeroNode.">
+<!-- Small "SI" icon shown in the browser tab, drawn inline so no extra file is needed. -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23123e8c'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' font-weight='700' fill='white' text-anchor='middle'%3ESI%3C/text%3E%3C/svg%3E">
+<style>
+  /* ---------------------------------------------------------------
+     COLOURS. Everything uses these variables, so changing a colour
+     here changes it across the whole page. The second block is used
+     automatically when the visitor's device is in dark mode.
+     --------------------------------------------------------------- */
+  :root {
+    --bg: #f7f6f2;        /* page background: warm off-white */
+    --card: #ffffff;      /* project cards */
+    --ink: #14171f;       /* main text */
+    --muted: #5a6070;     /* secondary text */
+    --line: #e1e0da;      /* borders */
+    --accent: #123e8c;    /* deep blue for links and highlights */
+    --accent-soft: #e6ecf7;
+    --tag: #f0efe9;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #101217; --card: #171a21; --ink: #ecedf0; --muted: #a0a6b2;
+      --line: #2a2e38; --accent: #8fb3ff; --accent-soft: #1b2436; --tag: #20242d;
+    }
+  }
+
+  /* ---------------------------------------------------------------
+     BASE LAYOUT
+     --------------------------------------------------------------- */
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.6 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }   /* centres the content */
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .serif { font-family: Charter, "Bitstream Charter", "Iowan Old Style", Georgia, serif; }
+
+  /* Top navigation bar */
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 22px 0; }
+  .mark { font-weight: 700; color: var(--ink); letter-spacing: .02em; }
+  .mark span { color: var(--accent); }
+  nav ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; font-size: 15px; }
+  nav ul a { color: var(--muted); }
+
+  /* ---------------------------------------------------------------
+     HERO: the first thing visitors see
+     --------------------------------------------------------------- */
+  .hero { padding: 56px 0 40px; }
+  .role { color: var(--accent); font-weight: 600; font-size: 15px; letter-spacing: .06em; text-transform: uppercase; }
+  h1 { font-size: clamp(40px, 7vw, 68px); line-height: 1.04; margin: 10px 0 18px; letter-spacing: -.01em; }
+  .intro { font-size: 19px; color: var(--muted); max-width: 680px; margin: 0 0 28px; }
+  .intro strong { color: var(--ink); font-weight: 600; }
+  .buttons { display: flex; flex-wrap: wrap; gap: 10px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 8px;
+    border: 1px solid var(--line); background: var(--card); color: var(--ink); font-weight: 600; font-size: 15px;
+  }
+  .btn:hover { text-decoration: none; border-color: var(--accent); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  @media (prefers-color-scheme: dark) { .btn.primary { color: #0b1020; } }
+
+  /* Three headline numbers under the intro */
+  .numbers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 44px 0 0; }
+  .num { border-top: 2px solid var(--ink); padding-top: 12px; }
+  .num b { display: block; font-size: 28px; letter-spacing: -.01em; }
+  .num span { color: var(--muted); font-size: 14px; }
+
+  /* ---------------------------------------------------------------
+     SECTIONS AND PROJECT CARDS
+     --------------------------------------------------------------- */
+  section { padding: 44px 0; }
+  h2 { font-size: 30px; margin: 0 0 6px; }
+  .lede { color: var(--muted); margin: 0 0 26px; max-width: 680px; }
+
+  .project {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 26px 28px; margin-bottom: 18px;
+    display: grid; grid-template-columns: 1.55fr 1fr; gap: 28px;
+  }
+  .project h3 { font-size: 26px; margin: 0 0 2px; }
+  .project .what { color: var(--accent); font-weight: 600; font-size: 14px; margin-bottom: 10px; }
+  .project p { margin: 0 0 12px; }
+  .project ul { margin: 0 0 14px; padding-left: 18px; }
+  .project li { margin-bottom: 6px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+  .tags span { background: var(--tag); border-radius: 6px; padding: 2px 9px; font-size: 13px; color: var(--muted); }
+  .links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .links a { font-weight: 600; font-size: 14px; border: 1px solid var(--line); border-radius: 7px; padding: 6px 12px; }
+  .links a:hover { border-color: var(--accent); text-decoration: none; }
+
+  /* The coloured "result" panel on the right of each card */
+  .result { background: var(--accent-soft); border-radius: 10px; padding: 18px 20px; align-self: start; }
+  .result .big { font-size: 34px; font-weight: 700; letter-spacing: -.02em; line-height: 1.1; }
+  .result .big small { font-size: 20px; color: var(--muted); font-weight: 600; }
+  .result .cap { color: var(--muted); font-size: 14px; margin: 6px 0 14px; }
+  .result dl { margin: 0; font-size: 14px; display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; }
+  .result dt { color: var(--muted); }
+  .result dd { margin: 0; font-weight: 600; }
+
+  /* "How I work" principles */
+  .principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .principle { border-left: 3px solid var(--accent); padding-left: 14px; }
+  .principle b { display: block; margin-bottom: 4px; }
+  .principle span { color: var(--muted); font-size: 15px; }
+
+  /* Skills table */
+  .skills { display: grid; grid-template-columns: 170px 1fr; gap: 10px 20px; margin: 0; }
+  .skills dt { font-weight: 600; }
+  .skills dd { margin: 0; color: var(--muted); }
+
+  /* Contact block and footer */
+  .contact { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 30px; }
+  .contact p { color: var(--muted); margin: 0 0 18px; }
+  footer { color: var(--muted); font-size: 14px; padding: 30px 0 50px; }
+
+  /* ---------------------------------------------------------------
+     PHONES: stack everything into one column on narrow screens
+     --------------------------------------------------------------- */
+  @media (max-width: 760px) {
+    nav ul { gap: 14px; font-size: 14px; }
+    nav ul li.hide-sm { display: none; }
+    .hero { padding-top: 28px; }
+    .intro { font-size: 17px; }
+    .numbers, .principles { grid-template-columns: 1fr; }
+    .project { grid-template-columns: 1fr; padding: 22px 20px; gap: 18px; }
+    .skills { grid-template-columns: 1fr; gap: 2px; }
+    .skills dd { margin-bottom: 10px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ===================== NAVIGATION ===================== -->
+  <nav>
+    <a class="mark" href="#">Saqlain <span>Islam</span></a>
+    <ul>
+      <li><a href="#projects">Projects</a></li>
+      <li class="hide-sm"><a href="#how">How I work</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <header class="hero">
+    <div class="role">Software Engineer · Full-stack</div>
+    <h1 class="serif">Saqlain Islam</h1>
+    <p class="intro">I build <strong>backend systems, applied security and AI agents</strong>, and I measure what they do.
+      My three projects cover a real-time drone fleet, a cryptographic trust layer for open commerce, and an AI agent
+      that teaches itself unfamiliar software.</p>
+    <div class="buttons">
+      <!-- Your CV: upload a file with exactly this name to the same repository. -->
+      <a class="btn primary" href="Saqlain_Islam_CV.pdf" target="_blank" rel="noopener">Download CV</a>
+      <a class="btn" href="https://github.com/saqlain-ism" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/in/saqlain-islam-750615279" target="_blank" rel="noopener">LinkedIn</a>
+      <!-- EMAIL: change zhonytark@gmail.com here (and in Contact below) once your main Gmail works again. -->
+      <a class="btn" href="mailto:zhonytark@gmail.com">Email</a>
+    </div>
+
+    <div class="numbers">
+      <div class="num"><b>62.5% → 91.7%</b><span>Autodidact: success on unseen tasks affected by the rule it taught itself</span></div>
+      <div class="num"><b>17 / 17</b><span>Sakshi: attacks blocked or detected in its live attack lab</span></div>
+      <div class="num"><b>0.26 ms</b><span>AeroNode: 95th-percentile decision latency per drone reading</span></div>
+    </div>
+  </header>
+
+  <!-- ===================== PROJECTS ===================== -->
+  <section id="projects">
+    <h2 class="serif">Projects</h2>
+    <p class="lede">Each one is fully tested, documented, and on GitHub with its results.</p>
+
+    <!-- Project 1: Autodidact -->
+    <article class="project">
+      <div>
+        <h3 class="serif">Autodidact</h3>
+        <div class="what">A self-learning LLM agent</div>
+        <p>An AI agent that teaches itself to use software it has never seen, with no human examples. It sets its own
+          practice exercises, checks every result against what it expected, and writes a notebook of lessons that later
+          evidence can confirm or retire.</p>
+        <ul>
+          <li>Built a sandbox inventory app served over the <b>Model Context Protocol</b> with 14 undocumented rules, and a 60-task hidden exam graded by diffing the whole database.</li>
+          <li>The agent discovered on its own that order quantities count case packs; on affected unseen tasks, 7 failures were fixed and none broken (McNemar p = 0.016).</li>
+          <li>Separate practice and test data, a leak filter, and every result published with a replay website.</li>
+        </ul>
+        <div class="tags"><span>Python</span><span>LLM agents</span><span>MCP</span><span>Gemini API</span><span>SQLite</span><span>pytest</span></div>
+        <div class="links">
+          <a href="https://saqlain-ism.github.io/autodidact/" target="_blank" rel="noopener">Live replay site →</a>
+          <a href="https://github.com/saqlain-ism/autodidact" target="_blank" rel="noopener">Code</a>
+        </div>
+      </div>
+      <div class="result">
+        <div class="big">91.7% <small>from 62.5%</small></div>
+        <div class="cap">success on unseen tasks affected by the rule it discovered (22/24 vs 15/24)</div>
+        <dl>
+          <dt>Exam</dt><dd>60 hidden tasks</dd>
+          <dt>Lessons</dt><dd>8, self-written</dd>
+          <dt>Tests</dt><dd>262</dd>
+        </dl>
+      </div>
+    </article>
+
+    <!-- Project 2: Sakshi -->
+    <article class="project">
+      <div>
+        <h3 class="serif">Sakshi</h3>
+        <div class="what">A cryptographic trust layer for open commerce (ONDC)</div>
+        <p>ONDC can verify who sent a message, but not whether anyone kept their promise. Sakshi turns every order into
+          verifiable evidence, so disputes are settled by proof and seller reputation can't be faked.</p>
+        <ul>
+          <li>Ed25519-signed requests in the ONDC format, receipts signed by both sides, and a Merkle-tree transparency log nobody can quietly rewrite.</li>
+          <li>Reputation computed only from that evidence, evidence-based dispute decisions, and fake-review ring detection with graph analysis and machine learning.</li>
+          <li>A 9-service simulated network with a live web dashboard, an attack lab, and a Java SDK producing byte-identical signatures.</li>
+        </ul>
+        <div class="tags"><span>Python</span><span>FastAPI</span><span>Ed25519</span><span>Merkle trees</span><span>Redis</span><span>scikit-learn</span><span>Java</span><span>Docker</span></div>
+        <div class="links">
+          <a href="https://sakshi-demo.onrender.com" target="_blank" rel="noopener">Live demo →</a>
+          <a href="https://github.com/saqlain-ism/sakshi" target="_blank" rel="noopener">Code</a>
+        </div>
+      </div>
+      <div class="result">
+        <div class="big">17 / 17</div>
+        <div class="cap">attacks blocked or detected, each run live against the network</div>
+        <dl>
+          <dt>Throughput</dt><dd>~7,100 verifications/s</dd>
+          <dt>Proof size</dt><dd>640 bytes in a 1M-record log</dd>
+          <dt>Tests</dt><dd>105 (Python + Java)</dd>
+        </dl>
+      </div>
+    </article>
+
+    <!-- Project 3: AeroNode -->
+    <article class="project">
+      <div>
+        <h3 class="serif">AeroNode</h3>
+        <div class="what">A real-time autonomous drone fleet framework</div>
+        <p>A simulated drone fleet streams telemetry over MQTT to a decision engine that reacts on its own: it filters bad
+          sensor data, predicts battery exhaustion, keeps drones apart, and sends commands back in under a millisecond.</p>
+        <ul>
+          <li>Responds correctly to 8 fault scenarios, including low battery, geofence breach, sensor failure, collision risk and lost link.</li>
+          <li>Predictive battery failsafe using linear regression, escalate-only commands with cooldowns, and rules in a YAML config.</li>
+          <li>Live Grafana dashboards on InfluxDB and n8n alert workflows; the whole stack starts with one Docker Compose command.</li>
+        </ul>
+        <div class="tags"><span>Python</span><span>FastAPI</span><span>MQTT</span><span>InfluxDB</span><span>Grafana</span><span>n8n</span><span>Docker</span></div>
+        <div class="links">
+          <a href="https://github.com/saqlain-ism/aeronode" target="_blank" rel="noopener">Code →</a>
+        </div>
+      </div>
+      <div class="result">
+        <div class="big">0.26 ms</div>
+        <div class="cap">95th-percentile decision latency (median about 0.09 ms)</div>
+        <dl>
+          <dt>Fleet</dt><dd>4 drones, 1 Hz telemetry</dd>
+          <dt>Faults</dt><dd>8 handled correctly</dd>
+          <dt>Tests</dt><dd>53, plus CI</dd>
+        </dl>
+      </div>
+    </article>
+  </section>
+
+  <!-- ===================== HOW I WORK ===================== -->
+  <section id="how">
+    <h2 class="serif">How I work</h2>
+    <p class="lede">The same habits run through all three projects.</p>
+    <div class="principles">
+      <div class="principle"><b>Measure, don't assert</b><span>Every claim comes with a number, a test or a reproducible result, including the limits.</span></div>
+      <div class="principle"><b>Design for failure</b><span>Systems keep working when a dependency dies, a quota runs out or an attacker tries something.</span></div>
+      <div class="principle"><b>Read the evidence</b><span>When results look wrong, I read the raw logs and transcripts, find the real cause, and fix the design.</span></div>
+    </div>
+  </section>
+
+  <!-- ===================== SKILLS ===================== -->
+  <section id="skills">
+    <h2 class="serif">Skills</h2>
+    <dl class="skills">
+      <dt>Languages</dt><dd>Python, Java, JavaScript, SQL</dd>
+      <dt>Frontend</dt><dd>React.js, JavaScript, HTML, CSS</dd>
+      <dt>Backend &amp; DevOps</dt><dd>FastAPI, MQTT, Redis, Docker, Git, GitHub Actions (CI)</dd>
+      <dt>Data &amp; ML</dt><dd>scikit-learn, NetworkX, LLM APIs (Gemini), InfluxDB, Grafana, n8n</dd>
+      <dt>Databases</dt><dd>SQL, MongoDB, SQLite</dd>
+      <dt>Security &amp; AI</dt><dd>Ed25519 signatures, Merkle trees, LLM agents, Model Context Protocol</dd>
+    </dl>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section id="contact">
+    <div class="contact">
+      <h2 class="serif">Get in touch</h2>
+      <p>I'm looking for software engineering roles across backend, security and AI. The quickest way to reach me is email.</p>
+      <div class="buttons">
+        <a class="btn primary" href="mailto:zhonytark@gmail.com">zhonytark@gmail.com</a>
+        <a class="btn" href="https://www.linkedin.com/in/saqlain-islam-750615279" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/saqlain-ism" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="Saqlain_Islam_CV.pdf" target="_blank" rel="noopener">CV (PDF)</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>© 2026 Saqlain Islam</footer>
+</div>
+</body>
+</html>
